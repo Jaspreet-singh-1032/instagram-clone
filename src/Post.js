@@ -4,7 +4,7 @@ import Avatar from "@mui/material/Avatar";
 function Post({ avatar, userName, imageUrl, caption }) {
   return (
     <div className="post">
-      <div className="post__hrader">
+      <div className="post__header">
         <Avatar className="post__avatar" alt={userName} src={avatar} />
         <h3>{userName}</h3>
       </div>
