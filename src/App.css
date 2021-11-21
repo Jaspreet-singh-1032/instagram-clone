@@ -30,3 +30,9 @@
 .app__headerImage {
   object-fit: contain;
 }
+
+.app__posts {
+  padding: 15px;
+  justify-content: center;
+  display: flex;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Modal from "@mui/material/Modal";
+import InstagramEmbed from "react-instagram-embed";
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
 import { db, auth } from "./firebase";
@@ -177,19 +178,35 @@ function App() {
           </div>
         )}
       </div>
-      <h1>Insta clone</h1>
-      {posts.map(({ id, post }) => {
-        return (
-          <Post
-            key={id}
-            avatar={post.avatar}
-            userName={post.userName}
-            imageUrl={post.imageUrl}
-            caption={post.caption}
-          />
-        );
-      })}
+      <div className="app__posts">
+        <div>
+          {posts.map(({ id, post }) => {
+            return (
+              <Post
+                key={id}
+                postId={id}
+                avatar={post.avatar}
+                userName={post.userName}
+                imageUrl={post.imageUrl}
+                caption={post.caption}
+              />
+            );
+          })}
+        </div>
+      </div>
       {user && <ImageUpload username={user.displayName} />}
+      {/* <InstagramEmbed
+        url="https://www.instagram.com/p/B_uf9dmAGPw/"
+        maxWidth={320}
+        hideCaption={false}
+        containerTagName="div"
+        protocol=""
+        injectScript
+        onLoading={() => {}}
+        onSuccess={() => {}}
+        onAfterRender={() => {}}
+        onFailure={() => {}}
+      /> */}
     </div>
   );
 }
