@@ -3,8 +3,9 @@ import "./App.css";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
-import Post from "./Post";
 import { db, auth } from "./firebase";
+import Post from "./Post";
+import ImageUpload from "./ImageUpload";
 
 const style = {
   position: "absolute",
@@ -74,14 +75,16 @@ function App() {
       .catch((error) => alert(error.message));
   };
   useEffect(() => {
-    db.collection("post").onSnapshot((snapshot) => {
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection("post")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
   return (
     <div className="app">
@@ -159,20 +162,21 @@ function App() {
           </form>
         </Box>
       </Modal>
-      <div className="app__headerImage">
+      <div className="app__header">
         <img
+          className="app__headerImage"
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="insta logo"
         />
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+          <div className="app__loginContainer">
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+            <Button onClick={() => setOpenLogin(true)}>Sign In</Button>
+          </div>
+        )}
       </div>
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-      ) : (
-        <div className="app__loginContainer">
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          <Button onClick={() => setOpenLogin(true)}>Sign In</Button>
-        </div>
-      )}
       <h1>Insta clone</h1>
       {posts.map(({ id, post }) => {
         return (
@@ -185,6 +189,7 @@ function App() {
           />
         );
       })}
+      {user && <ImageUpload username={user.displayName} />}
     </div>
   );
 }

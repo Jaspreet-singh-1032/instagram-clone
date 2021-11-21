@@ -6,14 +6,27 @@
   background-color: #fafafa;
   /* height: 100vh; */
 }
-.app__headerImage {
+/* .app__headerImage {
   background-color: white;
   padding: 20px;
   border-bottom: 1px solid lightgray;
   object-fit: contains;
-}
+} */
 
 .app__signup {
   display: flex;
   flex-direction: column;
+}
+
+.app__header {
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+  object-fit: contains;
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__headerImage {
+  object-fit: contain;
 }
