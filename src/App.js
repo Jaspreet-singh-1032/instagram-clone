@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Modal from "@mui/material/Modal";
-import InstagramEmbed from "react-instagram-embed";
+// import InstagramEmbed from "react-instagram-embed";
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
 import { db, auth } from "./firebase";
@@ -105,18 +105,21 @@ function App() {
               />
             </center>
             <Input
+              className="app__input"
               type="text"
               placeholder="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <Input
+              className="app__input"
               type="email"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              className="app__input"
               type="password"
               placeholder="password"
               value={password}
@@ -146,12 +149,14 @@ function App() {
               />
             </center>
             <Input
+              className="app__input"
               type="email"
               placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
+              className="app__input"
               type="password"
               placeholder="password"
               value={password}
@@ -184,6 +189,7 @@ function App() {
             return (
               <Post
                 key={id}
+                user={user}
                 postId={id}
                 avatar={post.avatar}
                 userName={post.userName}
