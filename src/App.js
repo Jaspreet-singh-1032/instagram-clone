@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Modal from "@mui/material/Modal";
-// import InstagramEmbed from "react-instagram-embed";
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
 import { db, auth } from "./firebase";
@@ -31,7 +30,6 @@ function App() {
 
   useEffect(() => {
     const unSubscribe = auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
       if (authUser) {
         // user logged in
         setUser(authUser);
