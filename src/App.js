@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     const unSubscribe = auth.onAuthStateChanged((authUser) => {
-      console.log(authUser);
       if (authUser) {
         // user logged in
         setUser(authUser);
@@ -86,7 +85,6 @@ function App() {
         );
       });
   }, []);
-  console.log(posts.length > 0 && posts[0].post.timestamp.toDate());
   return (
     <div className="app">
       <Modal
