@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Modal from "@mui/material/Modal";
-// import InstagramEmbed from "react-instagram-embed";
 import Box from "@mui/material/Box";
 import { Button, Input } from "@mui/material";
 import { db, auth } from "./firebase";
@@ -87,6 +86,7 @@ function App() {
         );
       });
   }, []);
+  console.log(posts.length > 0 && posts[0].post.timestamp.toDate());
   return (
     <div className="app">
       <Modal
